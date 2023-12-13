@@ -1,3 +1,6 @@
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using WeDriversMVC.Infrastructure;
 namespace WeDriversMVC.Web
 {
     public class Program
@@ -5,6 +8,11 @@ namespace WeDriversMVC.Web
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            var connectionString = builder.Configuration.GetConnectionString("ContextConnection") ?? throw new InvalidOperationException("Connection string 'ContextConnection' not found.");
+
+            builder.Services.AddDbContext<Context>(options => options.UseSqlServer(connectionString));
+
+            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<Context>();
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
