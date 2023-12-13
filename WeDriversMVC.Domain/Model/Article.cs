@@ -19,5 +19,7 @@ namespace WeDriversMVC.Domain.Model
         public ArticleCategory Category { get; set; }
 
         public ICollection<ArticleComment> Comments { get; set; }
+
+        public ICollection<ArticleTag> ArticleTags { get; set; }
     }
 }
