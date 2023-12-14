@@ -19,30 +19,8 @@ namespace WeDriversMVC.Infrastructure
 
         public DbSet<ArticleComment> ArticleComments { get; set; }
 
-        public DbSet<ArticleTag> ArticleTag { get; set; }
-
         public DbSet<Tag> Tags { get; set; }
 
         public Context(DbContextOptions options) : base(options) { }
-
-        //protected override void OnModelCreating(ModelBuilder builder)
-        //{
-        //    base.OnModelCreating(builder);
-
-        //    builder.Entity<Article>()
-        //        .HasOne(e => e.Category)
-        //        .WithMany(e => e.Articles);
-
-        //    builder.Entity<Article>()
-        //        .HasMany(e => e.Comments)
-        //        .WithOne(e => e.Article)
-        //        .HasForeignKey(e => e.ArticleId);
-
-        //    builder.Entity<Article>()
-        //        .HasMany(e => e.Tags)
-        //        .WithMany(e => e.Articles);
-
-
-        //}
     }
 }
