@@ -16,10 +16,11 @@ namespace WeDriversMVC.Domain.Model
 
         public string Author { get; set; }
 
+        public int CategoryId { get; set; }
         public ArticleCategory Category { get; set; }
 
         public ICollection<ArticleComment> Comments { get; set; }
 
-        public ICollection<ArticleTag> ArticleTags { get; set; }
+        public ICollection<Tag> Tags { get; set; }
     }
 }

@@ -15,8 +15,8 @@ namespace WeDriversMVC.Domain.Model
 
         public string Content { get; set; }
 
-        public int ArticleId { get; set; }
+        public int? ArticleId { get; set; }
 
-        public virtual Article Article { get; set; }
+        public Article Article { get; set; }
     }
 }

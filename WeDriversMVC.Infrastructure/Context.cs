@@ -25,33 +25,24 @@ namespace WeDriversMVC.Infrastructure
 
         public Context(DbContextOptions options) : base(options) { }
 
-        protected override void OnModelCreating(ModelBuilder builder)
-        {
-            base.OnModelCreating(builder);
+        //protected override void OnModelCreating(ModelBuilder builder)
+        //{
+        //    base.OnModelCreating(builder);
 
-            builder.Entity<Article>()
-                .HasOne(e => e.Category)
-                .WithOne(e => e.Article)
-                .HasForeignKey<ArticleCategory>(e => e.ArticleId);
+        //    builder.Entity<Article>()
+        //        .HasOne(e => e.Category)
+        //        .WithMany(e => e.Articles);
 
-            builder.Entity<Article>()
-                .HasMany(e => e.Comments)
-                .WithOne(e => e.Article)
-                .HasForeignKey(e => e.ArticleId);
+        //    builder.Entity<Article>()
+        //        .HasMany(e => e.Comments)
+        //        .WithOne(e => e.Article)
+        //        .HasForeignKey(e => e.ArticleId);
 
-            builder.Entity<ArticleTag>()
-                .HasKey(it => new { it.ArticleId, it.TagId });
+        //    builder.Entity<Article>()
+        //        .HasMany(e => e.Tags)
+        //        .WithMany(e => e.Articles);
 
-            builder.Entity<ArticleTag>()
-                .HasOne<Article>(it => it.Article)
-                .WithMany(i => i.ArticleTags)
-                .HasForeignKey(it => it.ArticleId);
 
-            builder.Entity<ArticleTag>()
-                .HasOne<Article>(it => it.Article)
-                .WithMany(i => i.ArticleTags)
-                .HasForeignKey(it => it.TagId);
-
-        }
+        //}
     }
 }
