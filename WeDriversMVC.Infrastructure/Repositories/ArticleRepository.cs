@@ -56,9 +56,9 @@ namespace WeDriversMVC.Infrastructure.Repositories
             return comments;
         }
 
-        public IQueryable<Tag> AllTags()
+        public IQueryable<ArticleTag> AllTags()
         {
-            var tags = _context.Tags;
+            var tags = _context.ArticleTags;
             return tags;
         }
 

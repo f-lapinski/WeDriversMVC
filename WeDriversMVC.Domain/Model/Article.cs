@@ -21,6 +21,6 @@ namespace WeDriversMVC.Domain.Model
 
         public ICollection<ArticleComment> Comments { get; set; }
 
-        public ICollection<Tag> Tags { get; set; }
+        public ICollection<ArticleTag> Tags { get; set; }
     }
 }

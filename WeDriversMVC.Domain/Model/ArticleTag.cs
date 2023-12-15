@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WeDriversMVC.Domain.Model
 {
-    public class Tag
+    public class ArticleTag
     {
         public int Id { get; set; }
 

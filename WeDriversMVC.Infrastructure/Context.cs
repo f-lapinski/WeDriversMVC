@@ -19,7 +19,7 @@ namespace WeDriversMVC.Infrastructure
 
         public DbSet<ArticleComment> ArticleComments { get; set; }
 
-        public DbSet<Tag> Tags { get; set; }
+        public DbSet<ArticleTag> ArticleTags { get; set; }
 
         public Context(DbContextOptions options) : base(options) { }
     }

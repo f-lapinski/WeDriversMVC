@@ -21,7 +21,7 @@ namespace WeDriversMVC.Domain.Interface
 
         IQueryable<ArticleComment> GetAllCommentsByArticleId(int articleId);
 
-        IQueryable<Tag> AllTags();
+        IQueryable<ArticleTag> AllTags();
 
         IQueryable<ArticleCategory> AllCategories();
     }
