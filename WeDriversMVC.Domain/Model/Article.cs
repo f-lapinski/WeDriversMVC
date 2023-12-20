@@ -10,6 +10,8 @@ namespace WeDriversMVC.Domain.Model
     {
         public int Id { get; set; }
 
+        public bool isPublished { get; set; }
+
         public DateTime CreatedAt { get; set; }
 
         public string Title { get; set; }

@@ -9,6 +9,8 @@ namespace WeDriversMVC.Application.ViewModels.Article
 {
     public class ArticleForListVm
     {
+        public int Id { get; set; }
+
         public string Title { get; set; }
 
         public DateTime CreatedAt { get; set; }

@@ -17,7 +17,7 @@ namespace WeDriversMVC.Domain.Interface
 
         IQueryable<Article> GetArticlesByCategoryId(int categoryId);
 
-        IEnumerable<Article> GetAllArticles();
+        IQueryable<Article> GetAllArticles();
 
         IQueryable<ArticleComment> GetAllCommentsByArticleId(int articleId);
 
