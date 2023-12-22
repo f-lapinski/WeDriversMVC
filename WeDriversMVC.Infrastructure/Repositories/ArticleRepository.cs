@@ -50,6 +50,12 @@ namespace WeDriversMVC.Infrastructure.Repositories
             return articles;
         }
 
+        public IQueryable<Article> GetAllPublishedArticles()
+        {
+            var articles = _context.Articles.Where(a => a.isPublished);
+            return articles;
+        }
+
         public IQueryable<ArticleComment> GetAllCommentsByArticleId(int articleId)
         {
             var comments = _context.ArticleComments.Where(a => a.ArticleId == articleId);

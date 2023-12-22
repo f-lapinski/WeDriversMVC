@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WeDriversMVC.Application.ViewModels.Article
+namespace WeDriversMVC.Application.ViewModels.Articles
 {
     public class ListArticleForListVm
     {

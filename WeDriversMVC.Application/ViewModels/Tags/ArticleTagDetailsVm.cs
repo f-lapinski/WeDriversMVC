@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WeDriversMVC.Application.ViewModels.Tag
+namespace WeDriversMVC.Application.ViewModels.Tags
 {
-    public class ListArticleTagForListVm
+    public class ArticleTagDetailsVm
     {
         public int Id { get; set; }
 

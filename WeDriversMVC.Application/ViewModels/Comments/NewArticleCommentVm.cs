@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WeDriversMVC.Application.ViewModels.Comment
+namespace WeDriversMVC.Application.ViewModels.Comments
 {
-    public class CommentDetailsVm
+    public class NewArticleCommentVm
     {
     }
 }

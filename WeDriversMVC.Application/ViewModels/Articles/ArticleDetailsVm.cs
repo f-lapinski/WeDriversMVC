@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WeDriversMVC.Application.ViewModels.Comment;
-using WeDriversMVC.Application.ViewModels.Tag;
+using WeDriversMVC.Application.ViewModels.Comments;
+using WeDriversMVC.Application.ViewModels.Tags;
 using WeDriversMVC.Domain.Model;
 
-namespace WeDriversMVC.Application.ViewModels.Article
+namespace WeDriversMVC.Application.ViewModels.Articles
 {
     public class ArticleDetailsVm
     {

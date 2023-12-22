@@ -1,10 +1,13 @@
-﻿using System;
+﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WeDriversMVC.Application.Interfaces;
-using WeDriversMVC.Application.ViewModels.Article;
+using WeDriversMVC.Application.ViewModels.Articles;
+using WeDriversMVC.Application.ViewModels.Comments;
 using WeDriversMVC.Domain.Interface;
 
 namespace WeDriversMVC.Application.Services
@@ -12,26 +15,19 @@ namespace WeDriversMVC.Application.Services
     public class ArticleService : IArticleService
     {
         private readonly IArticleRepository _articleRepository;
+        private readonly IMapper _mapper;
 
         public ListArticleForListVm GetAllArticlesForList()
         {
-            var articles = _articleRepository.GetAllArticles();
-            ListArticleForListVm result = new ListArticleForListVm();
-            result.Articles = new List<ArticleForListVm>();
-            foreach (var article in articles)
+            var articles = _articleRepository.GetAllPublishedArticles()
+                .ProjectTo<ArticleForListVm>(_mapper.ConfigurationProvider).ToList();
+            var articleList = new ListArticleForListVm()
             {
-                var articleVm = new ArticleForListVm()
-                {
-                    Id = article.Id,
-                    Title = article.Title,
-                    CreatedAt = article.CreatedAt,
-                    ContentPreview = article.Content.Substring(0, 100)
-                };
+                Articles = articles,
+                Count = articles.Count
+            };
 
-                result.Articles.Add(articleVm);
-            }
-            result.Count = result.Articles.Count;
-            return result;
+            return articleList;
         }
 
         public int NewArticle(NewArticleVm article)
@@ -41,7 +37,12 @@ namespace WeDriversMVC.Application.Services
 
         public ArticleDetailsVm GetArticleDetails(int articleId)
         {
-            throw new NotImplementedException();
+            var article = _articleRepository.GetArticleById(articleId);
+            var articleVm = _mapper.Map<ArticleDetailsVm>(article);
+
+            articleVm.Comments = new List<ListArticleCommentForListVm>();
+
+            return articleVm;
         }
     }
 }
