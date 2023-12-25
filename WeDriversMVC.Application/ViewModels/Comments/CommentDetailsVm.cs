@@ -8,5 +8,10 @@ namespace WeDriversMVC.Application.ViewModels.Comments
 {
     public class CommentDetailsVm
     {
+        public int Id { get; set; }
+
+        public string Author { get; set; }
+
+        public string Comment { get; set; }
     }
 }
