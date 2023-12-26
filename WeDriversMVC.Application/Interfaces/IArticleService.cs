@@ -13,6 +13,8 @@ namespace WeDriversMVC.Application.Interfaces
 
         int NewArticle(NewArticleVm article);
 
-        ArticleDetailsVm GetArticleDetails(int articleId);
+        ArticleDetailsVm GetArticleById(int articleId);
+
+        ListArticleForListVm GetArticlesByCategoryId(int categoryId);
     }
 }

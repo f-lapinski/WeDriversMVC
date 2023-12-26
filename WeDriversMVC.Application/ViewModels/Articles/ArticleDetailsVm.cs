@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,8 +22,16 @@ namespace WeDriversMVC.Application.ViewModels.Articles
 
         public string Author { get; set; }
 
-        public List<ListArticleTagForListVm> Tags { get; set; }
+        public ListArticleTagForListVm Tags { get; set; }
 
-        public List<ListArticleCommentForListVm> Comments { get; set; }
+        public ListArticleCommentForListVm Comments { get; set; }
+
+        public void Mapping(Profile profile)
+        {
+            profile.CreateMap<Article, ArticleDetailsVm>()
+                  .ForMember(dst => dst.Tags, opt => opt.MapFrom(src => src.Tags))
+                  .ForMember(dst => dst.Comments, opt => opt.MapFrom(src => src.Comments));
+        }
+
     }
 }

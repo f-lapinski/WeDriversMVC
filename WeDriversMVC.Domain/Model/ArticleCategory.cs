@@ -14,8 +14,6 @@ namespace WeDriversMVC.Domain.Model
 
         public string Description { get; set; }
 
-        public int ArticleId { get; set; }
-
         public ICollection<Article> Articles { get; set; }
     }
 }

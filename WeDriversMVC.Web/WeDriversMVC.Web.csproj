@@ -24,4 +24,8 @@
 		<ProjectReference Include="..\WeDriversMVC.Infrastructure\WeDriversMVC.Infrastructure.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Pages\" />
+	</ItemGroup>
+
 </Project>

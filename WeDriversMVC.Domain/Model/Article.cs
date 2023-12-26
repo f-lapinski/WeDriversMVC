@@ -12,7 +12,7 @@ namespace WeDriversMVC.Domain.Model
 
         public bool isPublished { get; set; }
 
-        public DateTime CreatedAt { get; set; }
+        public DateTime CreatedAt { get; set; } = DateTime.Now;
 
         public string Title { get; set; }
 
@@ -20,9 +20,7 @@ namespace WeDriversMVC.Domain.Model
 
         public string Author { get; set; }
 
-        public int CategoryId { get; set; }
-
-        public ArticleCategory Category { get; set; }
+        public ICollection<ArticleCategory> Categories { get; set; }
 
         public ICollection<ArticleComment> Comments { get; set; }
 

@@ -11,7 +11,7 @@ namespace WeDriversMVC.Domain.Model
     {
         public int Id { get; set; }
 
-        public DateTime CreatedAt { get; set; }
+        public DateTime CreatedAt { get; set; } = DateTime.Now;
 
         public string Author { get; set; }
 

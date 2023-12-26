@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.EntityFrameworkCore;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WeDriversMVC.Domain.Interface;
 using WeDriversMVC.Domain.Model;
 
@@ -41,7 +38,7 @@ namespace WeDriversMVC.Infrastructure.Repositories
 
         public IQueryable<Article> GetArticlesByCategoryId(int categoryId)
         {
-            var articles = _context.Articles.Where(a => a.CategoryId == categoryId);
+            var articles = _context.Articles.Include(a => a.Categories.Where(b => b.Id == categoryId));
             return articles;
         }
         public IQueryable<Article> GetAllArticles()

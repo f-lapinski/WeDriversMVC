@@ -1,6 +1,10 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using WeDriversMVC.Application;
+using WeDriversMVC.Domain.Interface;
 using WeDriversMVC.Infrastructure;
+using WeDriversMVC.Infrastructure.Repositories;
+
 namespace WeDriversMVC.Web
 {
     public class Program
@@ -14,9 +18,12 @@ namespace WeDriversMVC.Web
 
             builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<Context>();
 
+            builder.Services.AddApplication();
+            builder.Services.AddInfrastructure();
+            
             // Add services to the container.
             builder.Services.AddControllersWithViews();
-
+            
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
