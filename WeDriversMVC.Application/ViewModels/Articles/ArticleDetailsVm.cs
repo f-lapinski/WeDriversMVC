@@ -26,9 +26,12 @@ namespace WeDriversMVC.Application.ViewModels.Articles
 
         public ListArticleCommentForListVm Comments { get; set; }
 
+        public List<ArticleCategory> Categories { get; set; }
+
         public void Mapping(Profile profile)
         {
             profile.CreateMap<Article, ArticleDetailsVm>()
+                  .ForMember(dst => dst.Categories, opt => opt.MapFrom(src => src.Categories))
                   .ForMember(dst => dst.Tags, opt => opt.MapFrom(src => src.Tags))
                   .ForMember(dst => dst.Comments, opt => opt.MapFrom(src => src.Comments));
         }

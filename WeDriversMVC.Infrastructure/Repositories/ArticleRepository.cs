@@ -38,7 +38,7 @@ namespace WeDriversMVC.Infrastructure.Repositories
 
         public IQueryable<Article> GetArticlesByCategoryId(int categoryId)
         {
-            var articles = _context.Articles.Include(a => a.Categories.Where(b => b.Id == categoryId));
+            var articles = _context.Articles.Where(a => a.Categories.All(c => c.Id == categoryId));
             return articles;
         }
         public IQueryable<Article> GetAllArticles()
