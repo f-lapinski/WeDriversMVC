@@ -4,13 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WeDriversMVC.Application.Mapping;
 using WeDriversMVC.Application.ViewModels.Comments;
 using WeDriversMVC.Application.ViewModels.Tags;
 using WeDriversMVC.Domain.Model;
 
 namespace WeDriversMVC.Application.ViewModels.Articles
 {
-    public class ArticleDetailsVm
+    public class ArticleDetailsVm : IMapFrom<Article>
     {
         public int Id { get; set; }
 

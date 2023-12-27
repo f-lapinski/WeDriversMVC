@@ -1,10 +1,11 @@
 ﻿using AutoMapper;
+using WeDriversMVC.Application.Mapping;
 using WeDriversMVC.Application.ViewModels.Articles;
 using WeDriversMVC.Domain.Model;
 
 namespace WeDriversMVC.Application.ViewModels.Comments
 {
-    public class ArticleCommentForListVm
+    public class ArticleCommentForListVm : IMapFrom<ArticleComment>
     {
         public int Id { get; set; }
 
