@@ -33,16 +33,16 @@ namespace WeDriversMVC.Web.Controllers
             return View(articles);
         }
 
-        public IActionResult ViewArticle(int id)
+        [Route("Article/ViewArticle/{articleId}")]
+        public IActionResult ViewArticle(int articleId)
         {
-            int articleId = id;
             var articleModel = _articleService.GetArticleById(articleId);
             return View(articleModel);
         }
 
-        public IActionResult Category(int id)
+        [Route("Article/Category/{categoryId}")]
+        public IActionResult Category(int categoryId)
         {
-            int categoryId = id;
             var articleModel = _articleService.GetArticlesByCategoryId(categoryId);
             return View(articleModel);
         }
