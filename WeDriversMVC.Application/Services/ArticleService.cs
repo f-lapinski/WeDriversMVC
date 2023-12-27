@@ -18,13 +18,17 @@ namespace WeDriversMVC.Application.Services
             _articleRepository = articleRepository;
             _mapper = mapper;
         }
-        public ListArticleForListVm GetAllArticlesForList()
+        public ListArticleForListVm GetAllArticlesForList(int pageSize, int pageNo, string searchString)
         {
-            var articles = _articleRepository.GetAllPublishedArticles()
+            var articles = _articleRepository.GetAllPublishedArticles().Where(a => a.Title.Contains(searchString))
                 .ProjectTo<ArticleForListVm>(_mapper.ConfigurationProvider).ToList();
+            var articlesToShow = articles.Skip(pageSize * (pageNo - 1)).Take(pageSize).ToList();
             var articleList = new ListArticleForListVm()
             {
-                Articles = articles,
+                Articles = articlesToShow,
+                CurrentPage = pageNo,
+                PageSize = pageSize,
+                SearchString = searchString,
                 Count = articles.Count
             };
 

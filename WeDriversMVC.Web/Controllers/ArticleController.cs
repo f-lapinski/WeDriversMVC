@@ -14,7 +14,22 @@ namespace WeDriversMVC.Web.Controllers
         }
         public IActionResult Index()
         {
-            var articles = _articleService.GetAllArticlesForList();
+            var articles = _articleService.GetAllArticlesForList(2, 1, "");
+            return View(articles);
+        }
+
+        [HttpPost]
+        public IActionResult Index(int pageSize, int? pageNo, string searchString)
+        {
+            if (!pageNo.HasValue)
+            {
+                pageNo = 1;
+            }
+            if (searchString is null)
+            {
+                searchString = String.Empty;
+            }
+            var articles = _articleService.GetAllArticlesForList(pageSize, pageNo.Value, searchString);
             return View(articles);
         }
 

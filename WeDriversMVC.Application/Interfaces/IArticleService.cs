@@ -9,7 +9,7 @@ namespace WeDriversMVC.Application.Interfaces
 {
     public interface IArticleService
     {
-        ListArticleForListVm GetAllArticlesForList();
+        ListArticleForListVm GetAllArticlesForList(int pageSize, int pageNo, string searchString);
 
         int NewArticle(NewArticleVm article);
 
