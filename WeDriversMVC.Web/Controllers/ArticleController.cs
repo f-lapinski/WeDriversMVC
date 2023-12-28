@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using WeDriversMVC.Application.Interfaces;
 using WeDriversMVC.Application.Services;
+using WeDriversMVC.Application.ViewModels.Articles;
 
 namespace WeDriversMVC.Web.Controllers
 {
@@ -45,6 +46,19 @@ namespace WeDriversMVC.Web.Controllers
         {
             var articleModel = _articleService.GetArticlesByCategoryId(categoryId);
             return View(articleModel);
+        }
+
+        [HttpGet]
+        public IActionResult AddNewArticle()
+        {
+            return View(new NewArticleVm());
+        }
+
+        [HttpPost]
+        public IActionResult AddNewArticle(NewArticleVm model)
+        {
+            var id = _articleService.NewArticle(model);
+            return RedirectToAction("Index");
         }
     }
 }

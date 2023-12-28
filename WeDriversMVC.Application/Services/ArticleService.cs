@@ -4,6 +4,7 @@ using WeDriversMVC.Application.Interfaces;
 using WeDriversMVC.Application.ViewModels.Articles;
 using WeDriversMVC.Application.ViewModels.Comments;
 using WeDriversMVC.Domain.Interface;
+using WeDriversMVC.Domain.Model;
 
 namespace WeDriversMVC.Application.Services
 {
@@ -37,7 +38,11 @@ namespace WeDriversMVC.Application.Services
 
         public int NewArticle(NewArticleVm article)
         {
-            throw new NotImplementedException();
+            var art = _mapper.Map<Article>(article);
+            art.isPublished = true;
+            art.Author = "ForTestAuthor";
+            var id = _articleRepository.CreateArticle(art);
+            return id;
         }
 
         public ArticleDetailsVm GetArticleById(int articleId)

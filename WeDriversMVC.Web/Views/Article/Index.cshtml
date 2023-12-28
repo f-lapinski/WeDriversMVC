@@ -59,27 +59,25 @@
             </tbody>
         </table>
     </div>
-    <div class="row">
-        <table>
-            <tr>
-                @for(int i = 1; i < Math.Ceiling(Model.Count / (double)Model.PageSize); i++)
-                {
-                    <td>
-                        @if(i != Model.CurrentPage)
-                        {
-                            <a href="javascript:PagerClick(@i)">@i</a>
-                        }
-                        else
-                        {
-                            <span>@i</span>
-                        }
-                    </td>
-                }
-            </tr>
-        </table>
-        <input type="hidden" name="pageNo" id="pageNo" />
-        <input type="hidden" name="pageSize" id="pageSize" value="2"/>
-    </div>
+        <ul class="pagination">
+            @for (int i = 1; i <= Math.Ceiling(Model.Count / (double)Model.PageSize); i++)
+            {
+                <li class="page-item">
+                    @if (i != Model.CurrentPage)
+                    {
+                        <a class="page-link" href="javascript:PagerClick(@i)">@i</a>
+                    }
+                    else
+                    {
+                        <li class="page-item disabled">
+                            <span class="page-link">@i</span>
+                        </li>
+                    }
+                </li>
+            }
+        </ul>
+    <input type="hidden" name="pageNo" id="pageNo" />
+    <input type="hidden" name="pageSize" id="pageSize" value="2" />
 </form>
 
 

@@ -1,8 +1,10 @@
-﻿using WeDriversMVC.Domain.Model;
+﻿using AutoMapper;
+using WeDriversMVC.Application.Mapping;
+using WeDriversMVC.Domain.Model;
 
 namespace WeDriversMVC.Application.ViewModels.Articles
 {
-    public class NewArticleVm
+    public class NewArticleVm : IMapFrom<Article>
     {
         public int Id { get; set; }
 
@@ -10,6 +12,9 @@ namespace WeDriversMVC.Application.ViewModels.Articles
 
         public string Content { get; set; }
 
-        public List<ArticleTag> Tags { get; set; }
+        public void Mapping(Profile profile)
+        {
+            profile.CreateMap<NewArticleVm, Article>();
+        }
     }
 }
