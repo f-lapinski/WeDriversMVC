@@ -55,6 +55,7 @@ namespace WeDriversMVC.Web.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult AddNewArticle(NewArticleVm model)
         {
             var id = _articleService.NewArticle(model);

@@ -1,6 +1,10 @@
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
 using WeDriversMVC.Application;
+using WeDriversMVC.Application.ViewModels.Articles;
 using WeDriversMVC.Domain.Interface;
 using WeDriversMVC.Infrastructure;
 using WeDriversMVC.Infrastructure.Repositories;
@@ -20,10 +24,13 @@ namespace WeDriversMVC.Web
 
             builder.Services.AddApplication();
             builder.Services.AddInfrastructure();
-            
+            builder.Services.AddValidation();
+
             // Add services to the container.
-            builder.Services.AddControllersWithViews();
-            
+            builder.Services
+                .AddControllersWithViews()
+                .AddFluentValidation();
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
