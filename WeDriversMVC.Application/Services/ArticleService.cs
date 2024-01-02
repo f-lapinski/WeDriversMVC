@@ -67,5 +67,25 @@ namespace WeDriversMVC.Application.Services
 
             return articleList;
         }
+
+        public NewArticleVm GetArticleForEdit(int articleId)
+        {
+            var article = _articleRepository.GetArticleById(articleId);
+            var articleVm = _mapper.Map<NewArticleVm>(article);
+            return articleVm;
+        }
+
+        public void UpdateArticle(NewArticleVm model)
+        {
+            var article = _mapper.Map<Article>(model);
+            _articleRepository.UpdateArticle(article);
+        }
+
+        public void DeleteArticle(ArticleDetailsVm model)
+        {
+            var article = _mapper.Map<Article>(model);
+            _articleRepository.DeleteArticle(article.Id);
+        }
+
     }
 }

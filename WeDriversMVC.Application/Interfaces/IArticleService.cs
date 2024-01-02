@@ -16,5 +16,11 @@ namespace WeDriversMVC.Application.Interfaces
         ArticleDetailsVm GetArticleById(int articleId);
 
         ListArticleForListVm GetArticlesByCategoryId(int categoryId);
+
+        NewArticleVm GetArticleForEdit(int articleId);
+
+        void UpdateArticle(NewArticleVm model);
+
+        void DeleteArticle(ArticleDetailsVm model);
     }
 }

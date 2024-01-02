@@ -31,7 +31,7 @@ namespace WeDriversMVC.Application.ViewModels.Articles
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<Article, ArticleDetailsVm>()
+            profile.CreateMap<Article, ArticleDetailsVm>().ReverseMap()
                   .ForMember(dst => dst.Categories, opt => opt.MapFrom(src => src.Categories))
                   .ForMember(dst => dst.Tags, opt => opt.MapFrom(src => src.Tags))
                   .ForMember(dst => dst.Comments, opt => opt.MapFrom(src => src.Comments));

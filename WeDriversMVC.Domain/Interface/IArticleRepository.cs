@@ -26,6 +26,7 @@ namespace WeDriversMVC.Domain.Interface
         IQueryable<ArticleTag> AllTags();
 
         IQueryable<ArticleCategory> AllCategories();
+        void UpdateArticle(Article article);
     }
 }
 

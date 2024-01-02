@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SQLitePCL;
 using WeDriversMVC.Application.Interfaces;
 using WeDriversMVC.Application.Services;
 using WeDriversMVC.Application.ViewModels.Articles;
@@ -34,10 +35,9 @@ namespace WeDriversMVC.Web.Controllers
             return View(articles);
         }
 
-        [Route("Article/ViewArticle/{articleId}")]
-        public IActionResult ViewArticle(int articleId)
+        public IActionResult Details(int id)
         {
-            var articleModel = _articleService.GetArticleById(articleId);
+            var articleModel = _articleService.GetArticleById(id);
             return View(articleModel);
         }
 
@@ -49,16 +49,50 @@ namespace WeDriversMVC.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult AddNewArticle()
+        public IActionResult Create()
         {
             return View(new NewArticleVm());
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult AddNewArticle(NewArticleVm model)
+        public IActionResult Create(NewArticleVm model)
         {
             var id = _articleService.NewArticle(model);
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            var article = _articleService.GetArticleForEdit(id);
+            return View(article);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(NewArticleVm model)
+        {
+            if (ModelState.IsValid)
+            {
+                _articleService.UpdateArticle(model);
+                return RedirectToAction("Index");
+            }
+            return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            var article = _articleService.GetArticleById(id);
+            return View(article);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Delete(ArticleDetailsVm model)
+        {
+            _articleService.DeleteArticle(model);
             return RedirectToAction("Index");
         }
     }

@@ -21,13 +21,21 @@ namespace WeDriversMVC.Infrastructure.Repositories
         }
         public int DeleteArticle(int articleId)
         {
-            var article = _context.Articles.FirstOrDefault(a => a.Id == articleId);
+            var article = _context.Articles.Find(articleId);
             if (article != null)
             {
                 _context.Articles.Remove(article);
                 _context.SaveChanges();
             }
             return articleId;
+        }
+
+        public void UpdateArticle(Article article)
+        {
+            _context.Attach(article);
+            _context.Entry(article).Property("Title").IsModified = true;
+            _context.Entry(article).Property("Content").IsModified = true;
+            _context.SaveChanges();
         }
 
         public Article GetArticleById(int articleId)

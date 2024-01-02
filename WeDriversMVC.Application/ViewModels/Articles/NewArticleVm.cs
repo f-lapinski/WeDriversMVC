@@ -15,7 +15,7 @@ namespace WeDriversMVC.Application.ViewModels.Articles
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<NewArticleVm, Article>();
+            profile.CreateMap<NewArticleVm, Article>().ReverseMap();
         }
     }
 
