@@ -3,6 +3,7 @@ using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using WeDriversMVC.Application;
 using WeDriversMVC.Application.ViewModels.Articles;
 using WeDriversMVC.Domain.Interface;
@@ -33,6 +34,7 @@ namespace WeDriversMVC.Web
 
             var app = builder.Build();
 
+            app.Services.GetRequiredService<ILoggerFactory>().AddFile("Logs/mylog-{Date}.txt");
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
             {

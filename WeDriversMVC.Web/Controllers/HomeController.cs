@@ -15,7 +15,8 @@ namespace WeDriversMVC.Web.Controllers
 
         public IActionResult Index()
         {
-            return RedirectToAction("", "Article");
+            _logger.LogInformation("test");
+            return View();
         }
 
         public IActionResult Privacy()
