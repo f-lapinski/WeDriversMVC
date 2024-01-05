@@ -21,7 +21,8 @@ namespace WeDriversMVC.Web
 
             builder.Services.AddDbContext<Context>(options => options.UseSqlServer(connectionString));
 
-            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<Context>();
+            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddEntityFrameworkStores<Context>();
 
             builder.Services.AddApplication();
             builder.Services.AddInfrastructure();
@@ -53,6 +54,7 @@ namespace WeDriversMVC.Web
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
+            app.MapRazorPages();
 
             app.Run();
         }
