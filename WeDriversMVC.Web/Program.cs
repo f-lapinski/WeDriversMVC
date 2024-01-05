@@ -35,7 +35,8 @@ namespace WeDriversMVC.Web
 
             var app = builder.Build();
 
-            app.Services.GetRequiredService<ILoggerFactory>().AddFile("Logs/mylog-{Date}.txt");
+            //app.Services.GetRequiredService<ILoggerFactory>().AddFile("Logs/mylog-{Date}.txt");
+            
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
             {
@@ -50,6 +51,7 @@ namespace WeDriversMVC.Web
             app.UseRouting();
 
             app.UseAuthorization();
+            app.UseAuthentication();
 
             app.MapControllerRoute(
                 name: "default",
