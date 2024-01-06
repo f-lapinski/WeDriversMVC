@@ -33,6 +33,12 @@ namespace WeDriversMVC.Web
                 .AddControllersWithViews()
                 .AddFluentValidation();
 
+
+            builder.Services.Configure<IdentityOptions>(options =>
+            {
+                options.SignIn.RequireConfirmedEmail = false;
+            });
+
             var app = builder.Build();
 
             //app.Services.GetRequiredService<ILoggerFactory>().AddFile("Logs/mylog-{Date}.txt");
