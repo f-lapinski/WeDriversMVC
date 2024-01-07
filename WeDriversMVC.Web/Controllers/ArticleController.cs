@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SQLitePCL;
 using WeDriversMVC.Application.Interfaces;
 using WeDriversMVC.Application.Services;
@@ -6,6 +7,8 @@ using WeDriversMVC.Application.ViewModels.Articles;
 
 namespace WeDriversMVC.Web.Controllers
 {
+
+    [Authorize]
     public class ArticleController : Controller
     {
         private readonly IArticleService _articleService;
@@ -14,12 +17,15 @@ namespace WeDriversMVC.Web.Controllers
         {
             _articleService = articleService;
         }
+
+        [AllowAnonymous]
         public IActionResult Index()
         {
             var articles = _articleService.GetAllArticlesForList(2, 1, "");
             return View(articles);
         }
 
+        [AllowAnonymous]
         [HttpPost]
         public IActionResult Index(int pageSize, int? pageNo, string searchString)
         {

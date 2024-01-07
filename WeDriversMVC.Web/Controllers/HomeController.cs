@@ -15,7 +15,6 @@ namespace WeDriversMVC.Web.Controllers
 
         public IActionResult Index()
         {
-            _logger.LogInformation("test");
             return View();
         }
 
