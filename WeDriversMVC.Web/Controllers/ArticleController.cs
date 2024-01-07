@@ -4,11 +4,10 @@ using SQLitePCL;
 using WeDriversMVC.Application.Interfaces;
 using WeDriversMVC.Application.Services;
 using WeDriversMVC.Application.ViewModels.Articles;
+using WeDriversMVC.Web.Filters;
 
 namespace WeDriversMVC.Web.Controllers
 {
-
-    [Authorize]
     public class ArticleController : Controller
     {
         private readonly IArticleService _articleService;
@@ -18,7 +17,7 @@ namespace WeDriversMVC.Web.Controllers
             _articleService = articleService;
         }
 
-        [AllowAnonymous]
+        [CheckPermissons("Read")]
         public IActionResult Index()
         {
             var articles = _articleService.GetAllArticlesForList(2, 1, "");
