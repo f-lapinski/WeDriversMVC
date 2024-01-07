@@ -24,6 +24,16 @@ namespace WeDriversMVC.Web
             builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<Context>();
 
+            builder.Services.AddAuthentication()
+                .AddGoogle(options =>
+                {
+                    IConfigurationSection googleAuthNSection =
+                        builder.Configuration.GetSection("Authentication:Google");
+
+                    options.ClientId = googleAuthNSection["ClientId"];
+                    options.ClientSecret = googleAuthNSection["ClientSecret"];
+                });
+
             builder.Services.AddApplication();
             builder.Services.AddInfrastructure();
             builder.Services.AddValidation();
@@ -31,7 +41,7 @@ namespace WeDriversMVC.Web
             // Add services to the container.
             builder.Services
                 .AddControllersWithViews()
-                .AddFluentValidation();
+                .AddFluentValidation();  
 
             var app = builder.Build();
 
