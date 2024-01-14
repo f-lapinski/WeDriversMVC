@@ -8,6 +8,7 @@ using WeDriversMVC.Web.Filters;
 
 namespace WeDriversMVC.Web.Controllers
 {
+    [Authorize]
     public class ArticleController : Controller
     {
         private readonly IArticleService _articleService;

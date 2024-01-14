@@ -34,6 +34,15 @@ namespace WeDriversMVC.Web
                     options.ClientSecret = googleAuthNSection["ClientSecret"];
                 });
 
+            builder.Services.AddAuthorization(options => 
+            {
+                options.AddPolicy("CanEditArticle", policy =>
+                {
+                    policy.RequireClaim("EditArticle");
+                    policy.RequireClaim("ShowArticle");
+                });
+            });
+
             builder.Services.AddApplication();
             builder.Services.AddInfrastructure();
             builder.Services.AddValidation();
