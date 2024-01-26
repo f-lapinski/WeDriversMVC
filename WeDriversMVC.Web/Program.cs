@@ -37,10 +37,9 @@ namespace WeDriversMVC.Web
 
             builder.Services.AddAuthorization(options => 
             {
-                options.AddPolicy("CanEditArticle", policy =>
+                options.AddPolicy("CanAddNewArticle", policy =>
                 {
-                    policy.RequireClaim("EditArticle");
-                    policy.RequireClaim("ShowArticle");
+                    policy.RequireClaim("ViewArtcle", "AddNewArticle");
                 });
             });
 
