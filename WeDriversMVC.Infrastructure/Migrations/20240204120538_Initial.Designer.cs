@@ -12,18 +12,33 @@ using WeDriversMVC.Infrastructure;
 namespace WeDriversMVC.Infrastructure.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20231215194044_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20240204120538_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.0")
+                .HasAnnotation("ProductVersion", "8.0.1")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("ArticleArticleCategory", b =>
+                {
+                    b.Property<int>("ArticlesId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CategoriesId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ArticlesId", "CategoriesId");
+
+                    b.HasIndex("CategoriesId");
+
+                    b.ToTable("ArticleArticleCategory");
+                });
 
             modelBuilder.Entity("ArticleArticleTag", b =>
                 {
@@ -254,20 +269,21 @@ namespace WeDriversMVC.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Content")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.Property<bool>("isPublished")
+                        .HasColumnType("bit");
 
-                    b.HasIndex("CategoryId");
+                    b.HasKey("Id");
 
                     b.ToTable("Articles");
                 });
@@ -279,9 +295,6 @@ namespace WeDriversMVC.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("ArticleId")
-                        .HasColumnType("int");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -315,6 +328,9 @@ namespace WeDriversMVC.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
                     b.HasKey("Id");
 
                     b.HasIndex("ArticleId");
@@ -341,6 +357,21 @@ namespace WeDriversMVC.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ArticleTags");
+                });
+
+            modelBuilder.Entity("ArticleArticleCategory", b =>
+                {
+                    b.HasOne("WeDriversMVC.Domain.Model.Article", null)
+                        .WithMany()
+                        .HasForeignKey("ArticlesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WeDriversMVC.Domain.Model.ArticleCategory", null)
+                        .WithMany()
+                        .HasForeignKey("CategoriesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("ArticleArticleTag", b =>
@@ -409,17 +440,6 @@ namespace WeDriversMVC.Infrastructure.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("WeDriversMVC.Domain.Model.Article", b =>
-                {
-                    b.HasOne("WeDriversMVC.Domain.Model.ArticleCategory", "Category")
-                        .WithMany("Articles")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Category");
-                });
-
             modelBuilder.Entity("WeDriversMVC.Domain.Model.ArticleComment", b =>
                 {
                     b.HasOne("WeDriversMVC.Domain.Model.Article", "Article")
@@ -432,11 +452,6 @@ namespace WeDriversMVC.Infrastructure.Migrations
             modelBuilder.Entity("WeDriversMVC.Domain.Model.Article", b =>
                 {
                     b.Navigation("Comments");
-                });
-
-            modelBuilder.Entity("WeDriversMVC.Domain.Model.ArticleCategory", b =>
-                {
-                    b.Navigation("Articles");
                 });
 #pragma warning restore 612, 618
         }

@@ -24,7 +24,6 @@ namespace WeDriversMVC.Web.Controllers
             return View(articles);
         }
 
-        [AllowAnonymous]
         [HttpPost]
         public IActionResult Index(int pageSize, int? pageNo, string searchString)
         {
@@ -53,16 +52,19 @@ namespace WeDriversMVC.Web.Controllers
             return View(articleModel);
         }
 
+        [Authorize]
         [HttpGet]
         public IActionResult Create()
         {
             return View(new NewArticleVm());
         }
 
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Create(NewArticleVm model)
         {
+            model.Author = HttpContext.User.Identity.Name;
             var id = _articleService.NewArticle(model);
             return RedirectToAction("Index");
         }

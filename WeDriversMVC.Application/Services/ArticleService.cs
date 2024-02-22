@@ -1,18 +1,21 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
+using Microsoft.AspNetCore.Http;
 using WeDriversMVC.Application.Interfaces;
 using WeDriversMVC.Application.ViewModels.Articles;
 using WeDriversMVC.Application.ViewModels.Comments;
 using WeDriversMVC.Domain.Interface;
 using WeDriversMVC.Domain.Model;
+using System.Web;
+using Microsoft.AspNetCore.Identity;
 
 namespace WeDriversMVC.Application.Services
 {
     public class ArticleService : IArticleService
     {
         private readonly IArticleRepository _articleRepository;
-
         private readonly IMapper _mapper;
+        private readonly IHttpContextAccessor _contextAccessor;
 
         public ArticleService(IArticleRepository articleRepository, IMapper mapper)
         {
@@ -40,7 +43,6 @@ namespace WeDriversMVC.Application.Services
         {
             var art = _mapper.Map<Article>(article);
             art.isPublished = true;
-            art.Author = "ForTestAuthor";
             var id = _articleRepository.CreateArticle(art);
             return id;
         }

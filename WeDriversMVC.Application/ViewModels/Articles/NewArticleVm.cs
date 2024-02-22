@@ -9,6 +9,8 @@ namespace WeDriversMVC.Application.ViewModels.Articles
     {
         public int Id { get; set; }
 
+        public string Author {  get; set; }
+
         public string Title { get; set; }
 
         public string Content { get; set; }
@@ -24,6 +26,7 @@ namespace WeDriversMVC.Application.ViewModels.Articles
         public NewArticleValidation()
         {
             RuleFor(x => x.Id).NotNull();
+            RuleFor(x => x.Author).NotNull();
             RuleFor(x => x.Title).NotNull().MinimumLength(10).MaximumLength(255);
             RuleFor(x => x.Content).NotNull();
 
